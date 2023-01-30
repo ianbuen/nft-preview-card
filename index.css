@@ -1,0 +1,122 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: none;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+footer, header, nav, section, main {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228deg, 45%, 44%);
+}
+
+body {
+  display: grid;
+  background: hsl(217deg, 54%, 11%);
+  padding: 1.25rem;
+  font-family: "Outfit", sans-serif;
+}
+
+.card {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: 1fr 1fr;
+  background: hsl(216deg, 50%, 16%);
+  border-radius: 10px;
+  padding: 1.25rem;
+  row-gap: 1rem;
+}
+.card * {
+  grid-column: span 2;
+  align-self: center;
+}
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+.card h1 {
+  font-size: 1.4rem;
+  color: white;
+  font-weight: 600;
+}
+.card p {
+  color: hsl(215deg, 51%, 70%);
+  font-weight: 300;
+  line-height: 2;
+}
+.card h4 {
+  color: hsl(178deg, 100%, 50%);
+  font-weight: 600;
+  grid-column: 1;
+}
+.card p:last-of-type {
+  grid-column: 2;
+  justify-self: end;
+}
+.card .creator {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: min-content 1rem auto;
+  border-top: 1px solid hsl(215deg, 32%, 27%);
+  padding-top: 1rem;
+}
+.card .creator img {
+  width: 2rem;
+  grid-column: 1;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+.card .creator p {
+  grid-column: 3;
+  justify-self: start;
+}
+
+/*# sourceMappingURL=index.css.map */
