@@ -66,53 +66,139 @@ $softblue: hsl(215, 51%, 70%);
 $cyan: hsl(178, 100%, 50%);
 $main_bg: hsl(217, 54%, 11%);
 $card_bg: hsl(216, 50%, 16%);
-$line: hsl(215, 32%, 27%);
+$line: hsl(215, 32%, 27%); 
+
+
+@mixin icon($image: '') {
+    width: 1rem;
+    background: url($image) no-repeat;
+    background-position: center center;
+    display: block;
+    content: '';
+    margin-right: 5px;
+}
+
+@mixin hilite() {
+    &:hover {
+        color: $cyan;
+        cursor: pointer;
+    }
+}
+
+@mixin rwd {
+    @media only screen and (min-width: 376px) {
+        @content;
+    }
+}
+
+
+html {
+    display: grid;
+}
 
 body {
     display: grid;
     background: $main_bg;
     padding: 1.25rem;
     font-family: 'Outfit', sans-serif;
+
+    place-items: center;
 }
 
 .card {
+    $padding: 1.25rem;
 
     display: grid;
     grid-auto-rows: auto;
     grid-template-columns: 1fr 1fr;
     background: $card_bg;
     border-radius: 10px;
-    padding: 1.25rem;
+    padding: $padding;
     row-gap: 1rem;
+    box-shadow: 0 10px 100px #000a;
+
+    @include rwd {
+        $card_max_size: 375px;
+        width: calc($card_max_size - $padding);
+    }
 
     * { 
         grid-column: span 2; 
         align-self: center;
     }
 
-    img { width: 100%; border-radius: 10px; }
+    .img-wrapper {
+
+        border-radius: 10px;
+        position: relative;
+
+        img { 
+            @extend .img-wrapper;
+            width: 100%;
+        }
+
+        &:hover {
+            @extend .img-wrapper;
+            background: $cyan;
+            background-position: center center;
+            display: flex;
+
+            img {
+                opacity: 0.5;
+                transition: all 400ms linear;
+                position: relative; top: -2px;
+            }
+
+            &::after {
+                content: '';
+                width: 100%; height: 100%;
+                background: url('images/icon-view.svg') no-repeat;
+                background-position: center center;
+                position: absolute; left: 0;
+                animation: appear 300ms linear;
+            }
+
+            @keyframes appear {
+                0% { opacity: 0; }
+                100% { opacity: 1; }
+            }
+        }
+    }
     
     h1 {
         font-size: 1.4rem;
         color: white;
         font-weight: 600;
+        margin-top: 1rem;
+        @include hilite();
     }
     
     p {
         color: $softblue;
         font-weight: 300;
         line-height: 2;
+        font-size: 1.02rem;
     }
 
-    h4 {
+    > h4 {
         color: $cyan;
         font-weight: 600;
         grid-column: 1;
-    } 
+        display: flex;
 
-    p:last-of-type {
+        &::before {
+            @include icon($image: './images/icon-ethereum.svg');
+        }
+    } 
+    
+    > p:last-of-type {
         grid-column: 2;
         justify-self: end;
+        display: flex;
+        
+        &::before {
+            @include icon($image: './images/icon-clock.svg');
+        }
     }
 
     .creator {
@@ -132,6 +218,22 @@ body {
         p {
             grid-column: 3;
             justify-self: start;
+            font-weight: 400;
+
+            span { color: white; @include hilite(); }
         }    
+    }
+}
+
+footer {
+
+    align-self: end;
+
+    @include rwd() {
+        align-self: start;
+    }
+
+    * {
+        color: white;
     }
 }

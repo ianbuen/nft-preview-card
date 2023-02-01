@@ -58,11 +58,16 @@ input {
   color: hsl(228deg, 45%, 44%);
 }
 
+html {
+  display: grid;
+}
+
 body {
   display: grid;
   background: hsl(217deg, 54%, 11%);
   padding: 1.25rem;
   font-family: "Outfit", sans-serif;
+  place-items: center;
 }
 
 .card {
@@ -73,33 +78,95 @@ body {
   border-radius: 10px;
   padding: 1.25rem;
   row-gap: 1rem;
+  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.6666666667);
+}
+@media only screen and (min-width: 376px) {
+  .card {
+    width: calc(375px - 1.25rem);
+  }
 }
 .card * {
   grid-column: span 2;
   align-self: center;
 }
-.card img {
-  width: 100%;
+.card .img-wrapper, .card .img-wrapper:hover, .card .img-wrapper img:hover, .card .img-wrapper:hover img, .card .img-wrapper img:hover img, .card .img-wrapper img {
   border-radius: 10px;
+  position: relative;
+}
+.card .img-wrapper img, .card .img-wrapper:hover img, .card .img-wrapper img:hover img {
+  width: 100%;
+}
+.card .img-wrapper:hover, .card .img-wrapper img:hover {
+  background: hsl(178deg, 100%, 50%);
+  background-position: center center;
+  display: flex;
+}
+.card .img-wrapper:hover img, .card .img-wrapper img:hover img {
+  opacity: 0.5;
+  transition: all 400ms linear;
+  position: relative;
+  top: -2px;
+}
+.card .img-wrapper:hover::after, .card .img-wrapper img:hover::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: url("images/icon-view.svg") no-repeat;
+  background-position: center center;
+  position: absolute;
+  left: 0;
+  animation: appear 300ms linear;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .card h1 {
   font-size: 1.4rem;
   color: white;
   font-weight: 600;
+  margin-top: 1rem;
+}
+.card h1:hover {
+  color: hsl(178deg, 100%, 50%);
+  cursor: pointer;
 }
 .card p {
   color: hsl(215deg, 51%, 70%);
   font-weight: 300;
   line-height: 2;
+  font-size: 1.02rem;
 }
-.card h4 {
+.card > h4 {
   color: hsl(178deg, 100%, 50%);
   font-weight: 600;
   grid-column: 1;
+  display: flex;
 }
-.card p:last-of-type {
+.card > h4::before {
+  width: 1rem;
+  background: url("./images/icon-ethereum.svg") no-repeat;
+  background-position: center center;
+  display: block;
+  content: "";
+  margin-right: 5px;
+}
+.card > p:last-of-type {
   grid-column: 2;
   justify-self: end;
+  display: flex;
+}
+.card > p:last-of-type::before {
+  width: 1rem;
+  background: url("./images/icon-clock.svg") no-repeat;
+  background-position: center center;
+  display: block;
+  content: "";
+  margin-right: 5px;
 }
 .card .creator {
   display: grid;
@@ -117,6 +184,26 @@ body {
 .card .creator p {
   grid-column: 3;
   justify-self: start;
+  font-weight: 400;
+}
+.card .creator p span {
+  color: white;
+}
+.card .creator p span:hover {
+  color: hsl(178deg, 100%, 50%);
+  cursor: pointer;
+}
+
+footer {
+  align-self: end;
+}
+@media only screen and (min-width: 376px) {
+  footer {
+    align-self: start;
+  }
+}
+footer * {
+  color: white;
 }
 
 /*# sourceMappingURL=index.css.map */
