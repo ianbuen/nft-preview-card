@@ -141,13 +141,13 @@ body {
   line-height: 2;
   font-size: 1.02rem;
 }
-.card > h4 {
+.card > .value {
   color: hsl(178deg, 100%, 50%);
   font-weight: 600;
   grid-column: 1;
   display: flex;
 }
-.card > h4::before {
+.card > .value::before {
   width: 1rem;
   background: url("./images/icon-ethereum.svg") no-repeat;
   background-position: center center;
